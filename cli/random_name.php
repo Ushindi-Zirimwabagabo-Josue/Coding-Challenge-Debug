@@ -7,39 +7,44 @@
  * 2) The print_r should print 5 random names; Please modify only the functions themselves, not the way we invoke them.
  */
 
+// define("PHP_EOL", "\n");
 
 $arr = [];
+
 function combineNames($str1 = "", $str2 = "")
 {
 	$params = [$str1, $str2];
-	foreach ($params as $param) {
+	foreach ($params as &$param) {
 		if ($param == "") {
 			$param = randomHeroName();
 		}
 	}
-	echo implode($params, " - ");
+	echo "Here is the name: " . implode(" - ", $params);
+	echo PHP_EOL . PHP_EOL;
 }
 
-function randomGenerate($arr, $amount)
+function randomGenerate(&$arr, $amount)
 {
 	for ($i = $amount; $i > 0; $i--) {
 		array_push($arr, randomHeroName());
 	}
-	return $amount;
+	// return $amount;
 }
 
 function randomHeroName()
 {
 	$hero_firstnames = ["captain", "doctor", "iron", "Hank", "ant", "Wasp", "the", "Hawk", "Spider", "Black"];
-	$hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil"]
+	$hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil"];
 	$heroes = [$hero_firstnames, $hero_lastnames];
-	echo $heroes[rand(0, count($heroes))][rand(0, 10)];
+	return $heroes[0][rand(0, 9)] . " " . $heroes[1][rand(0, 9)];
 }
 
-echo "Here is the name: " . combineNames();
-
-echo PHP_EOL . PHP_EOL;
+combineNames();
+echo '<br>';
 
 $fiveHeroesHolder = [];
 randomGenerate($fiveHeroesHolder, 5);
 print_r($fiveHeroesHolder);
+
+
+// var_dump(defined("PHP_EOL")); // should output if exists: bool(true) 

@@ -5,10 +5,11 @@
  * Please modify only the function itself, nothing else
  */
 
-function filterArray($validOptions, $input) {
-	for ($i = 0; $i <= count($input); $i++) {
-		if (!in_array($input[$i], $validOptions)) {
-			unset($input[$i]);
+function filterArray($validOptions, $input)
+{
+	foreach ($input as $key => $value) {
+		if (!in_array($value, $validOptions)) {
+			unset($input[$key]);
 		}
 	}
 	echo implode(', ', $input);

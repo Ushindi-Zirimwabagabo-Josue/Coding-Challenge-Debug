@@ -4,9 +4,13 @@
  * The $arr array should contain the english alphabet in the format  Array ([0] => a, [1] => b, [2] => c, ...)
  */
 
-$arr = [];
-for ($letter = 'a'; $letter <= 'z'; $letter++) {
-	array_push($arr, $letter);
-}
+$arr = range('a', 'z');
 
-print_r($arr);
+echo 'Array (';
+foreach ($arr as $key => $value) {
+	echo " [$key] => $value";
+	if ($key < count($arr) - 1) {
+		echo ',';
+	}
+}
+echo ' )';
